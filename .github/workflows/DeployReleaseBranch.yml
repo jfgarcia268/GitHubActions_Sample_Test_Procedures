@@ -27,3 +27,8 @@ jobs:
         echo ${{ secrets[github.event.inputs.targetEnv] }} > env.sfdx
         sfdx force:auth:sfdxurl:store -d -a ALIAS -f env.sfdx
         vlocity -sfdx.username ALIAS -job Deploy_Delta.yaml packDeploy --verbose true --simpleLogging true
+    - name: Run All Test Procedures 
+      run: |
+        echo ${{ secrets[github.event.inputs.targetEnv] }} > env.sfdx
+        sfdx force:auth:sfdxurl:store -d -a ALIAS -f env.sfdx 
+        vlocity runAllTestProcedures --nojob -sfdx.username ALIAS --verbose true --simpleLogging true    
